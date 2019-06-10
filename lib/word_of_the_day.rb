@@ -1,6 +1,5 @@
-require "word_of_the_day/version"
+#my environment requires all the dependencies
 
-module WordOfTheDay
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "./word_of_the_day/version"
+require_relative './word_of_the_day/cli'
+puts "heller"

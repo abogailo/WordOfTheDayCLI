@@ -1,3 +1,5 @@
-#!/usr/bin/env ruby   #shebang line because this is not a ruby file
+#!/usr/bin/env ruby   
 
-puts "Hello World!"
+require './lib/word_of_the_day'
+
+WordOfTheDay::CLI.new.call 
