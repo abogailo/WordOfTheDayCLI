@@ -16,32 +16,29 @@ class WordOfTheDay::CLI
         puts "1. See the definition"
         puts "2. Show origin"
         puts "3. Show more options"
-
+        puts "Type the number to select"
         input = gets.chomp
+
         case input
         
         when "1"    
-            show_def
-        
+            show_word #word.show_def
+            go_to_menu
         when "2"    
-            show_def
-
+            show_origin #word.show_origin
+            go_to_menu
         when "3"
-            show_more_options
-
+            show_more_options #self.show_more_options
         end
-      #  if(input == no) 
-       #     show_more_options 
         
     end
 
     def show_more_options
         puts ""
         puts "MO' OPTIONS"
-        puts "1. See Previous Date"
+        puts "1. See Previous Dates Word-of-"
         puts "2. See Last Weeks Date"
-        puts "3. Back to Main Menu"
-        puts "4. Exit"
+        puts "3. Exit"
 
         input = gets.chomp
 
@@ -49,24 +46,26 @@ class WordOfTheDay::CLI
         
         when "1"
             puts "You selected 1"
-            puts "Type M for Menu"
+            show_previous_date
+            scraper.mang
             go_to_menu
         when "2"
             puts "You selected 2"
+            show_last_weeks_date
+            go_to_menu
         when "3"
-            puts "You selected 3"
-        when "4"
             puts "exiting"
         end
        
     end
 
-    def show_def
-        puts "when you puts"
+    def show_word
+        @word = WordOfTheDay::Word.todays
     end
 
     def go_to_menu
         input = gets.chomp
+        puts "Type M for main Menu"
         if (input == "M")
             self.menu
         end
