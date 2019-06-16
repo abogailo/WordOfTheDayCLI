@@ -11,6 +11,6 @@ class WordOfTheDay::Word
     def self.todays
         #should return todays word
         puts "shh"
-        @bangladesh = WordOfTheDay::Scraper.mang
+        @word = WordOfTheDay::Scraper.scrape_wotd
     end
 end

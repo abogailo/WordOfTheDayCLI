@@ -1,4 +1,8 @@
-#my environment requires all the dependencies
+#the dependencies
+
+require 'open-uri'
+require 'nokogiri'
+require 'pry'
 
 require_relative "./word_of_the_day/version"
 require_relative './word_of_the_day/cli'

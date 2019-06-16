@@ -1,34 +1,42 @@
 
 class WordOfTheDay::Scraper
+    attr_accessor :site, :word, :origin, :definition
 
+    def self.scrape_wotd
+      site = "https://www.dictionary.com/e/word-of-the-day"
 
-    def self.mang
-      puts "HEY MA!"
+    doc = Nokogiri::HTML(open(site))
+
+        word_hash = []
+        #array of hashes https://stackoverflow.com/questions/17119413/adding-several-items-to-a-hash-in-ruby
+        doc.css("li.wotd-item").each do |word|
+            word_hash << {
+                word: "#{word.attr("data-title")}",
+                url:  "#{word.attr("data-url")}",
+                origin: word.css("div.wotd-item__origin__text").text, 
+                definition: word.css("div.wotd-item__definition__text").text,
+                pronunciation: word.css("div.wotd-item__definition__pronunciation").text
+           
+            }
+        end
+        word_hash.each do |item|
+           puts "#{item[:word]}"
+            end
+    #word = doc.css("div.wotd-item__origin__text") 
+   # pronunciation = doc.css("div.wotd-item__definition__pronunciation")
+    #definition = doc.css("div.wotd-item__definition__text")
+   # origin = doc.css("div.wotd-item__origin__text")
+    
+    #social_icon = doc.css("div.social-icon-container a").collect {|x| x.attribute("href").value}
+
+  #  puts word.text
+
+   # puts pronunciation.text
+   # puts definition.text
+   # puts origin.text
     end
-#site = "https://www.dictionary.com/e/word-of-the-day"
-
-#page = Nokogiri::HTML(open(site))
-
-#results = page.css("div.wotd-item__origin__text") 
-
-#puts results.text
 
 
-# results.each{|r| puts r.css("").text}
-
- #enter a selector that you know you want to use in your scrape - i.e. div.main-content  or h1.title 
-
-#if the result is an empty array [], the content you want is probably being loaded with javascript
 
 
-#.text works on an array
-#['href'] does NOT work on an array 
-
-
-#if it's a really long result and you can't tell if the content you want is in there, try chaining .text to the end.
-  #for example: 
-    #page.css("div.main-content").text  OR  #page.css("div.main-content")[0].text
-
-
-#"Finished running code"
 end
