@@ -5,69 +5,49 @@ class WordOfTheDay::CLI
         menu 
     end
 
-    def show_WOTD
-        puts "funky" #gets word of the day from scraper
-    end
-
     def menu
-        puts "CRAZY WORD OF THE DAY CLI TEXT"
         puts "Today's Word of The Day:"
-        show_WOTD 
+        @word = WordOfTheDay::Word.todays 
         puts "1. See the definition"
         puts "2. Show origin"
-        puts "3. Show more options"
-        puts "Type the number to select"
+        puts "3. Show pronunciation"
+        puts "4. Show last weeks list of words"
+        puts ""
+        puts "Type 'exit' at anytime to end program."
+
         input = gets.chomp
 
         case input
         
         when "1"    
-            show_word #word.show_def
+            WordOfTheDay::Word.todays
             go_to_menu
         when "2"    
-            show_origin #word.show_origin
+            WordOfTheDay::Word.show_origin
             go_to_menu
         when "3"
-            show_more_options #self.show_more_options
+            WordOfTheDay::Word.show_pronunciation
+            go_to_menu
+        when "4"
+            WordOfTheDay::Word.show_last_weeks
+            go_to_menu
+        when "exit"
+            puts "" #look into formatting
+            puts "Good-bye! Program is exiting..." #put this in yellow
+            exit
+        else
+            puts "This option does not exist. Please choose another option." #put this in red
+            menu
         end
         
-    end
-
-    def show_more_options
-        puts ""
-        puts "MO' OPTIONS"
-        puts "1. See Previous Dates Word-of-"
-        puts "2. See Last Weeks Date"
-        puts "3. Exit"
-
-        input = gets.chomp
-
-        case input
-        
-        when "1"
-            puts "You selected 1"
-            show_previous_date
-            scraper.mang
-            go_to_menu
-        when "2"
-            puts "You selected 2"
-            show_last_weeks_date
-            go_to_menu
-        when "3"
-            puts "exiting"
-        end
-       
-    end
-
-    def show_word
-        @word = WordOfTheDay::Word.todays
     end
 
     def go_to_menu
+        puts "Type 'menu' for menu."
         input = gets.chomp
-        puts "Type M for main Menu"
-        if (input == "M")
+        if (input == "menu")
             self.menu
         end
     end
+
 end

@@ -4,3 +4,6 @@ source "https://rubygems.org"
 gemspec
 
 gem 'anemone', '~> 0.7.2'
+
+gem nokogiri >= 1.3.0
+gem robotex >= 1.0.0

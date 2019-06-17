@@ -6,11 +6,26 @@
 
 class WordOfTheDay::Word
 
-    attr_accessor :name, :definition, :origin
+    attr_accessor :word, :definition, :origin, :pronunciation, :url, :latest, :previous_url #needs both reader and writer
 
     def self.todays
-        #should return todays word
-        puts "shh"
-        @word = WordOfTheDay::Scraper.scrape_wotd
+        WordOfTheDay::Scraper.scrape_wotd
     end
+
+    def self.show_previous
+        #will return previous weeks words. I will return all 7 of last weeks.
+    end
+
+    def self.show_definition
+        #show the words definition
+    end
+
+    def self.show_pronunciation
+        #show the words pronunciation
+    end
+
+    def self.show_origin
+        #return the origin
+    end
+
 end

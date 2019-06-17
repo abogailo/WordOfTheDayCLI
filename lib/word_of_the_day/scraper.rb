@@ -1,42 +1,65 @@
+#make a class hash to store all of the 
 
 class WordOfTheDay::Scraper
-    attr_accessor :site, :word, :origin, :definition
-
+  attr_accessor :wordybirdy
     def self.scrape_wotd
-      site = "https://www.dictionary.com/e/word-of-the-day"
-
-    doc = Nokogiri::HTML(open(site))
-
-        word_hash = []
+      
+      doc = Nokogiri::HTML(open("https://www.dictionary.com/e/word-of-the-day"))
+      word_hash = []   
         #array of hashes https://stackoverflow.com/questions/17119413/adding-several-items-to-a-hash-in-ruby
-        doc.css("li.wotd-item").each do |word|
-            word_hash << {
-                word: "#{word.attr("data-title")}",
-                url:  "#{word.attr("data-url")}",
-                origin: word.css("div.wotd-item__origin__text").text, 
-                definition: word.css("div.wotd-item__definition__text").text,
-                pronunciation: word.css("div.wotd-item__definition__pronunciation").text
-           
+      doc.css("li.wotd-item").each do |word|
+          word_hash << {
+            word: "#{word.attr("data-title")}",
+            url:  "#{word.attr("data-url")}",
+            origin: word.css("div.wotd-item__origin__text").text, 
+            definition: word.css("div.wotd-item__definition__text").text,      
+            pronunciation: word.css("div.wotd-item__definition__pronunciation").text,
+            latest: "#{word.attr("data-is-latest-post")}"
             }
-        end
+      end
+      
+        #should return todays word
         word_hash.each do |item|
-           puts "#{item[:word]}"
+            latest = item[:latest]
+            if latest.include? "true" #if data is latest post = true will pull todays date
+                 #puts item.values will print all values in array of hashes
+                 @wordybirdy = item[:word]
             end
-    #word = doc.css("div.wotd-item__origin__text") 
-   # pronunciation = doc.css("div.wotd-item__definition__pronunciation")
-    #definition = doc.css("div.wotd-item__definition__text")
-   # origin = doc.css("div.wotd-item__origin__text")
-    
-    #social_icon = doc.css("div.social-icon-container a").collect {|x| x.attribute("href").value}
+         end
+         puts @wordybirdy
+         word_hash.each do |item|
+          latest = item[:latest]
+          if latest.include? "true" #if data is latest post = true will pull todays date
+               #puts item.values will print all values in array of hashes
+               puts item[:pronunciation]
+          end
+       end
 
-  #  puts word.text
+       word_hash.each do |item|
+        latest = item[:latest]
+        if latest.include? "true" #if data is latest post = true will pull todays date
+             #puts item.values will print all values in array of hashes
+             puts item[:definition]
+        end
+     end
 
-   # puts pronunciation.text
-   # puts definition.text
-   # puts origin.text
+     word_hash.each do |item|
+      latest = item[:latest]
+      if latest.include? "true" #if data is latest post = true will pull todays date
+           #puts item.values will print all values in array of hashes
+           puts item[:origin]
+      end
+   end
+
+         word_hash.each do |item|
+         
+          puts item[:word]
+          puts item[:pronunciation]
+          puts item[:definition]
+          puts item[:origin]
+          puts ""
+            
+         end
+
     end
-
-
-
-
 end
