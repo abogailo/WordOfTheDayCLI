@@ -1,4 +1,4 @@
-#My CLI controller, responsible for business logic (stubbed out the controller)
+#interface
 class WordOfTheDay::CLI
 
     def call
@@ -6,14 +6,18 @@ class WordOfTheDay::CLI
     end
 
     def menu
-        puts "Today's Word of The Day:"
-        @word = WordOfTheDay::Word.todays 
-        puts "1. See the definition"
-        puts "2. Show origin"
-        puts "3. Show pronunciation"
-        puts "4. Show last 7 days list of words"
         puts ""
-        puts "Type 'exit' at anytime to end program."
+        puts ""
+        puts "Today's Word of The Day:".green
+        puts ""
+        @word = WordOfTheDay::Word.todays 
+        puts ""
+        puts "1. See the definition".green
+        puts "2. Show origin".green
+        puts "3. Show pronunciation".green
+        puts "4. Show last 7 days list of words".green
+        puts ""
+        puts "Type 'exit' at anytime to end program.".magenta
 
         input = gets.chomp
 
@@ -33,17 +37,17 @@ class WordOfTheDay::CLI
             go_to_menu
         when "exit"
             puts "" #look into formatting
-            puts "Good-bye! Program is exiting..." #put this in yellow
+            puts "Good-bye! Program is exiting...".blue #put this in yellow
             exit
         else
-            puts "This option does not exist. Please choose another option." #put this in red
+            puts "This option does not exist. Please choose another option.".red #put this in red
             menu
         end
         
     end
 
     def go_to_menu
-        puts "Type 'menu' for menu."
+        puts "Type 'menu' for menu.".blue
         input = gets.chomp
         if (input == "menu")
             self.menu
