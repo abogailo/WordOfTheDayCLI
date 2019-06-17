@@ -3,6 +3,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
+require 'colorize'
 
 require_relative "./word_of_the_day/version"
 require_relative './word_of_the_day/cli'
