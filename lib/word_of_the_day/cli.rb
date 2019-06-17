@@ -11,7 +11,7 @@ class WordOfTheDay::CLI
         puts "1. See the definition"
         puts "2. Show origin"
         puts "3. Show pronunciation"
-        puts "4. Show last weeks list of words"
+        puts "4. Show last 7 days list of words"
         puts ""
         puts "Type 'exit' at anytime to end program."
 
@@ -20,7 +20,7 @@ class WordOfTheDay::CLI
         case input
         
         when "1"    
-            WordOfTheDay::Word.todays
+            WordOfTheDay::Word.show_definition
             go_to_menu
         when "2"    
             WordOfTheDay::Word.show_origin
@@ -29,7 +29,7 @@ class WordOfTheDay::CLI
             WordOfTheDay::Word.show_pronunciation
             go_to_menu
         when "4"
-            WordOfTheDay::Word.show_last_weeks
+            WordOfTheDay::Word.show_last_seven
             go_to_menu
         when "exit"
             puts "" #look into formatting
