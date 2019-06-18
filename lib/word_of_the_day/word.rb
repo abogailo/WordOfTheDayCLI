@@ -17,19 +17,19 @@ attr_accessor :wotd_word, :wotd_url, :wotd_origin, :wotd_definition, :wotd_pronu
                      @wotd_word = item[:word]
                 end
              end
-        puts @wotd_word
+        puts "       #{@wotd_word}".cyan.bold
     end
 
     def self.show_last_seven
         word_hash = []
         @this = WordOfTheDay::Scraper.scrape_wotd
-        @this.each do |item|
+        @this.each_with_index do |item, index|
          
-            puts item[:word] #add each with index thing. Avis video 42:03 and colors to format this better
-            puts item[:pronunciation]
-            puts item[:definition]
-            puts item[:origin]
-            puts ""
+            puts "#{index + 1}. #{item[:word]}".red#add each with index thing. Avis video 42:03 and colors to format this better
+            puts "#{item[:pronunciation]}".yellow
+            puts "#{item[:definition]}"
+            puts "#{item[:origin]}".magenta
+            puts "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "----".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green
               
            end
         #will return seven of this weeks words
@@ -45,7 +45,7 @@ attr_accessor :wotd_word, :wotd_url, :wotd_origin, :wotd_definition, :wotd_pronu
                      @wotd_definition = item[:definition]
                 end
              end
-        puts @wotd_definition
+        puts "      #{@wotd_definition}".yellow
         puts ""
     end
 
@@ -59,7 +59,7 @@ attr_accessor :wotd_word, :wotd_url, :wotd_origin, :wotd_definition, :wotd_pronu
                      @wotd_pronunciation = item[:pronunciation]
                 end
              end
-        puts @wotd_pronunciation
+        puts "#{@wotd_pronunciation}".bold
         puts ""
     end
 

@@ -18,7 +18,7 @@ class WordOfTheDay::CLI
         puts "4. Show last 7 days list of words".green
         puts ""
         puts "Type 'exit' at anytime to end program.".magenta
-
+        puts ""
         input = gets.chomp
 
         case input
@@ -40,7 +40,10 @@ class WordOfTheDay::CLI
             puts "Good-bye! Program is exiting...".blue #put this in yellow
             exit
         else
-            puts "This option does not exist. Please choose another option.".red #put this in red
+            puts ""
+            puts ""
+            puts "This option does not exist. Please choose another option below.".red #put this in red
+            puts "---------------------------------------------------------------".red 
             menu
         end
         
