@@ -1,14 +1,11 @@
-#make a class hash to store all of the 
 
 class WordOfTheDay::Scraper
-  attr_accessor :word, :url, :origin, :definition, :pronunciation, :latest
   
   def self.scrape_wotd
       
     doc = Nokogiri::HTML(open("https://www.dictionary.com/e/word-of-the-day"))
 
     word_hash = []   
-        #array of hashes https://stackoverflow.com/questions/17119413/adding-several-items-to-a-hash-in-ruby
       
       doc.css("li.wotd-item").each do |word|
         word_hash << {

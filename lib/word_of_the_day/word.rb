@@ -1,8 +1,4 @@
-#show_word
-#show_previous
-#show_last week
-#show def
-#show origin
+
 
 class WordOfTheDay::Word
 
@@ -13,7 +9,6 @@ attr_accessor :wotd_word, :wotd_url, :wotd_origin, :wotd_definition, :wotd_pronu
         @this.each do |item|
                 latest = item[:latest]
                 if latest.include? "true" #if data is latest post = true will pull todays date
-                     #puts item.values will print all values in array of hashes
                      @wotd_word = item[:word]
                 end
              end
@@ -25,7 +20,7 @@ attr_accessor :wotd_word, :wotd_url, :wotd_origin, :wotd_definition, :wotd_pronu
         @this = WordOfTheDay::Scraper.scrape_wotd
         @this.each_with_index do |item, index|
          
-            puts "#{index + 1}. #{item[:word]}".red#add each with index thing. Avis video 42:03 and colors to format this better
+            puts "#{index + 1}. #{item[:word]}".red #add each with index thing. Avis video 42:03 and colors to format this better
             puts "#{item[:pronunciation]}".yellow
             puts "#{item[:definition]}"
             puts "#{item[:origin]}".magenta
@@ -41,7 +36,6 @@ attr_accessor :wotd_word, :wotd_url, :wotd_origin, :wotd_definition, :wotd_pronu
         @this.each do |item|
                 latest = item[:latest]
                 if latest.include? "true" #if data is latest post = true will pull todays date
-                     #puts item.values will print all values in array of hashes
                      @wotd_definition = item[:definition]
                 end
              end
@@ -55,7 +49,6 @@ attr_accessor :wotd_word, :wotd_url, :wotd_origin, :wotd_definition, :wotd_pronu
         @this.each do |item|
                 latest = item[:latest]
                 if latest.include? "true" #if data is latest post = true will pull todays date
-                     #puts item.values will print all values in array of hashes
                      @wotd_pronunciation = item[:pronunciation]
                 end
              end
@@ -69,7 +62,6 @@ attr_accessor :wotd_word, :wotd_url, :wotd_origin, :wotd_definition, :wotd_pronu
         @this.each do |item|
                 latest = item[:latest]
                 if latest.include? "true" #if data is latest post = true will pull todays date
-                     #puts item.values will print all values in array of hashes
                      @wotd_origin = item[:origin]
                 end
              end

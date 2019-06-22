@@ -22,7 +22,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Run the executable
+2. Choose an option from the menu
+3. View the option
+4. To choose another option from the 'menu', return to the menu by typing menu
+5. To end the program at any point type 'exit'
+
 
 ## Development
 
