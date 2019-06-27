@@ -10,17 +10,20 @@ class WordOfTheDay::CLI
         puts ""
         puts "Today's Word of The Day:".green
         puts ""
-        @word = WordOfTheDay::Word.todays 
-        puts ""
+        WordOfTheDay::Word.test(1)
+        
         puts "1. See the definition".green
         puts "2. Show origin".green
         puts "3. Show pronunciation".green
         puts "4. Show last 7 days list of words".green
-        puts ""
+        puts "5. Yesterday's word".green
         puts "Type 'exit' at anytime to end program.".magenta
         puts ""
         input = gets.chomp
-
+        if ((!input == 1) || (!input == 'menu'))
+            puts "nerp"
+            go_to_menu
+        end
         case input
         
         when "1"    

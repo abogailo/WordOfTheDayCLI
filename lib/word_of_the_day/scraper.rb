@@ -5,19 +5,16 @@ class WordOfTheDay::Scraper
       
     doc = Nokogiri::HTML(open("https://www.dictionary.com/e/word-of-the-day"))
 
-    word_hash = []   
       
-      doc.css("li.wotd-item").each do |word|
-        word_hash << {
-          word: "#{word.attr("data-title")}",
-          url:  "#{word.attr("data-url")}",
-          origin: word.css("div.wotd-item__origin__text").text, 
-          definition: word.css("div.wotd-item__definition__text").text,      
-          pronunciation: word.css("div.wotd-item__definition__pronunciation").text,
-          latest: "#{word.attr("data-is-latest-post")}"
-          }
+      doc.css("li.wotd-item").each do |obj|
+          wordy = "#{obj.attr("data-title")}"
+          url =  "#{obj.attr("data-url")}"
+          origin = obj.css("div.wotd-item__origin__text").text
+          definition = obj.css("div.wotd-item__definition__text").text     
+          pronunciation = obj.css("div.wotd-item__definition__pronunciation").text
+          latest = "#{obj.attr("data-is-latest-post")}"
+          WordOfTheDay::Word.new(wordy,url,origin,definition,pronunciation,latest)
           
         end
-        word_hash
   end
 end
