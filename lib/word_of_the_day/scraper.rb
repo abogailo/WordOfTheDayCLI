@@ -13,7 +13,7 @@ class WordOfTheDay::Scraper
           definition = obj.css("div.wotd-item__definition__text").text     
           pronunciation = obj.css("div.wotd-item__definition__pronunciation").text
           latest = "#{obj.attr("data-is-latest-post")}"
-          WordOfTheDay::Word.new(wordy,url,origin,definition,pronunciation,latest)
+          WordOfTheDay::Word.new(wordy,origin,definition,pronunciation)
           
         end
   end
