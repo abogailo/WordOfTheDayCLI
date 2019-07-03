@@ -11,13 +11,14 @@ class WordOfTheDay::CLI
         puts "Today's Word of The Day:".green
         puts ""
         
-        WordOfTheDay::Word.word_of_the_day(0)
+        word_of_the_day(0)
         
         puts "1. See the definition".green
         puts "2. Show origin".green
         puts "3. Show pronunciation".green
         puts "4. Show yesterdays".green
         puts "5. Show last 7 days list of words".green
+        puts "6. Show all that start with s".green
         puts "Type 'exit' at anytime to end program.".magenta
         puts ""
         input = gets.chomp
@@ -25,19 +26,22 @@ class WordOfTheDay::CLI
         case input
         
         when "1"    
-            WordOfTheDay::Word.show_definition(0)
+            show_definition(0)
             side_menu
         when "2"    
-            WordOfTheDay::Word.show_origin(0)
+           show_origin(0)
             side_menu
         when "3"
-            WordOfTheDay::Word.show_pronunciation(0)
+            show_pronunciation(0)
             side_menu
         when "4"
-            WordOfTheDay::Word.show_yesterdays(1)
+            show_yesterdays(1)
             go_to_menu
         when "5"
-            WordOfTheDay::Word.show_last_seven
+            show_last_seven
+            go_to_menu
+        when "6"
+            show_all_s
             go_to_menu
         when "exit"
             puts "" #look into formatting
@@ -53,7 +57,7 @@ class WordOfTheDay::CLI
     end
 
     def side_menu
-        puts "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "----".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green
+        pretty_line
         puts ""
         puts "1. See the definition".green + "  2. Show origin".yellow + "  3. Show pronunciation".green + "  4. Show all".green
         puts ""
@@ -65,16 +69,16 @@ class WordOfTheDay::CLI
         case input
         
         when "1"    
-            WordOfTheDay::Word.show_definition(0)
+            show_definition(0)
             side_menu
         when "2"    
-            WordOfTheDay::Word.show_origin(0)
+            show_origin(0)
             side_menu
         when "3"
-            WordOfTheDay::Word.show_pronunciation(0)
+            show_pronunciation(0)
             side_menu
         when "4"
-            WordOfTheDay::Word.show_yesterdays(0)
+            show_yesterdays(0)
             go_to_menu
         when "menu"
             self.menu
@@ -82,7 +86,7 @@ class WordOfTheDay::CLI
             exit
         else
             puts ""
-            puts "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "----".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green
+            pretty_line
             puts ""
             puts ""
             puts "This option does not exist. Please choose another option below.".red #put this in red
@@ -90,6 +94,11 @@ class WordOfTheDay::CLI
             side_menu
         end
     end
+
+    def pretty_line
+        puts "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "----".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green + "---".red + "---".green + "---".magenta + "---".yellow + "---".green
+    end
+
 
     def go_to_menu
         puts ""
@@ -109,4 +118,68 @@ class WordOfTheDay::CLI
             side_menu
         end
     end
+
+    def word_of_the_day(choice)
+        choice = choice.to_i
+        puts "   #{WordOfTheDay::Word.all[choice].wordy}".cyan
+        puts ""
+      end
+  
+      def show_definition(choice)
+        choice = choice.to_i
+        puts "#{WordOfTheDay::Word.all[choice].definition}".cyan
+      end
+      
+  
+      def show_pronunciation(choice)
+        choice = choice.to_i
+        puts "#{WordOfTheDay::Word.all[choice].pronunciation}".cyan
+      end
+  
+      def show_origin(choice)
+        choice = choice.to_i
+        puts "#{WordOfTheDay::Word.all[choice].origin}".cyan
+      end
+  
+      def show_yesterdays(choice)
+            choice = choice.to_i
+            puts ""
+            puts ""
+            pretty_line            
+            puts ""
+            puts "#{WordOfTheDay::Word.all[choice].wordy}".red
+            puts "#{WordOfTheDay::Word.all[choice].pronunciation}".yellow
+            puts "#{WordOfTheDay::Word.all[choice].definition}"
+            puts "#{WordOfTheDay::Word.all[choice].origin}".magenta
+            pretty_line
+       #will return seven of this weeks words
+       end
+  
+       def show_last_seven
+         
+        WordOfTheDay::Word.all.each_with_index do |item, index|
+        
+               puts "#{index + 1}. #{item.wordy}".red #add each with index thing. Avis video 42:03 and colors to format this better
+               puts "#{item.pronunciation}".yellow
+               puts "#{item.definition}"
+               puts "#{item.origin}".magenta
+               pretty_line
+             
+            end
+       #will return seven of this weeks words
+        end
+
+        def show_all_s
+            WordOfTheDay::Word.all_s_words.each_with_index do |item, index|
+        
+                puts "#{index + 1}. #{item.wordy}".red #add each with index thing. Avis video 42:03 and colors to format this better
+                puts "#{item.pronunciation}".yellow
+                puts "#{item.definition}"
+                puts "#{item.origin}".magenta
+                pretty_line
+              
+             end
+        #will return all s words of this weeks words
+         end
+
 end
